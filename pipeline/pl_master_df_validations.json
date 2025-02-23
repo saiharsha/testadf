@@ -158,6 +158,11 @@
 				}
 			}
 		],
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "Proper_column_validation_pipelines"
 		},
