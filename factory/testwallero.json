@@ -1,0 +1,9 @@
+{
+	"name": "testwallero",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "753ce605-e53a-40ee-84b2-70759124d2a8",
+		"tenantId": "6de5354b-f23a-492c-b7cb-d04a716bcbc1"
+	}
+}
