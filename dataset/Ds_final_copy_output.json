@@ -1,0 +1,17 @@
+{
+	"name": "Ds_final_copy_output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_storage_blob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "unprocessed"
+			}
+		}
+	}
+}

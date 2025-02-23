@@ -1,0 +1,57 @@
+{
+	"name": "dataflow3_snowflake",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Ds_Excel_Input",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_snowflake",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     filename as string (\"PolicyClaim_Validated.xlsx\"),",
+				"     sheetname as string (\"work_claim\")",
+				"}",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(CREATED_DATE = currentTimestamp(),",
+				"          FILE_NAME = concat(substringIndex($filename,'.' ,1),'_',$sheetname,'.',substringIndex($filename,'.' ,-1))) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          CLAIM_ID as string,",
+				"          POLICY_ID as string,",
+				"          CLAIM_STATUS as string,",
+				"          FILE_NAME as string,",
+				"          CREATED_DATE as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     stageInsert: true) ~> sink1"
+			]
+		}
+	}
+}

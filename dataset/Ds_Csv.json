@@ -1,0 +1,44 @@
+{
+	"name": "Ds_Csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_storage_blob",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
+				"container": "config"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ClaimId",
+				"type": "String"
+			},
+			{
+				"name": "PolicyId",
+				"type": "String"
+			},
+			{
+				"name": "ClaimStatus",
+				"type": "String"
+			}
+		]
+	}
+}

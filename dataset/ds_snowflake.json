@@ -1,0 +1,47 @@
+{
+	"name": "ds_snowflake",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sink_snowflake",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"tablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SnowflakeV2Table",
+		"schema": [
+			{
+				"name": "CLAIM_ID",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "POLICY_ID",
+				"type": "NUMBER",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "CLAIM_STATUS",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "FILE_NAME",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "CREATED_DATE",
+				"type": "DATE"
+			}
+		],
+		"typeProperties": {
+			"schema": "POLICYCLAIM_SCHEMA",
+			"table": {
+				"value": "@dataset().tablename",
+				"type": "Expression"
+			}
+		}
+	}
+}
