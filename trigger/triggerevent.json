@@ -12,12 +12,6 @@
 				"parameters": {
 					"filename": "@triggerBody().fileName"
 				}
-			},
-			{
-				"pipelineReference": {
-					"referenceName": "pl_master_df_validations",
-					"type": "PipelineReference"
-				}
 			}
 		],
 		"type": "BlobEventsTrigger",
